@@ -1,9 +1,29 @@
-// TODO: Create your express server here and launch on a port of your choosing
+const express = require('express');
+const app = express();
+const port = 3000;
+const userData = require('../data/users.js')
 
-  // Include a console log which prints 'Listening on port [your port] when the server is launched
+app.get('/allUsers', (req, res) => {
+  res.status(200).send(userData);
+});
 
-// Launch your server by running 'npm start' in the terminal (Why does this work? Check the package.json file to understand what this script does)
+app.get('/names', (req, res) => {
+  let userNames = userData.map(user => user.name);
+  res.status(200).send(userNames);
+});
 
-// Complete the request handlers detailed in README.md
+app.get('/evenUsers', (req, res) => {
+  let evenUsers = userData.filter(user => user.id % 2 === 0);
+  res.status(200).send(evenUsers);
+});
 
-// Test each route using Postman to ensure correct implementation
+app.get(`/user/:id`, (req, res) => {
+  let { id } = req.params;
+  let userObj = userData.find(user => user.id === Number(id));
+  let { name, email, phone } = userObj;
+  res.status(200).send([ name, email, phone ]);
+})
+
+app.listen(port, () => {
+  console.log(`Listening on port: ${port}`);
+});
