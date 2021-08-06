@@ -19,7 +19,9 @@
 
 > Respond to a GET request to `/evenUsers` with an array of all user objects whose `id` is an even number
 
-> Respond to a GET request to `user/:id` where `id` represents a variable user id. This is known as a *route parameter*. Your server should respond with an array of that user's name, email, and phone number.
+> Respond to a GET request to `user/:id` where `id` represents a variable user id. This is known as a *route parameter*. Your server should respond with an array of that user's name, email, and phone number.   
+
+(Hint: `req.params.id` will evaluate to a string. Consider how this will affect your implementation.)
 ### Use Postman to test each of the above request handlers. 
 
 ---
